@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Family from './components/Family';
+import MyContext from './context/context';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  state = {
+    name: "Josh",
+    age: 28,
+    ofAge: true
+  }
+  login = () => {
+    console.log('loged in');
+  }
+  render() {  
+    return (
+      <div className="App">
+      <MyContext.Provider value={{
+        person: {
+          name: this.state.name,
+          age: this.state.age,
+          ofAge: this.state.ofAge
+        },
+        h1: 'This is H1',
+        login: this.login
+      }}>
+          <Family />
+      </MyContext.Provider>
+      </div>
+    );
+  }
 }
+
 
 export default App;
